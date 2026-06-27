@@ -628,9 +628,25 @@ function renderContacts(){
       <td><span class="badge ${statusBadge}">${c.status}</span></td>
       <td style="color:var(--text2)">${c.date||'—'}</td>
       <td style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text2)">${c.notes||'—'}</td>
-      <td><button class="btn btn-sm" onclick="editContact(${c.row})">Edit</button></td>
+      <td style="display:flex;gap:4px"><button class="btn btn-sm" onclick="editContact(${c.row})">Edit</button><button class="btn btn-sm btn-danger" onclick="deleteContact(${c.row})">Delete</button></td>
     </tr>`;
   }).join('');
+}
+
+async function deleteContact(row){
+  if(!confirm('Delete this contact?'))return;
+  const params=new URLSearchParams();
+  params.append('payload',JSON.stringify({action:'delete',sheet:'Contacts',row}));
+  await fetch(WRITER,{method:'POST',mode:'no-cors',body:params});
+  await syncAll();
+}
+
+async function deleteEmployer(row){
+  if(!confirm('Delete this employer?'))return;
+  const params=new URLSearchParams();
+  params.append('payload',JSON.stringify({action:'delete',sheet:'Employers',row}));
+  await fetch(WRITER,{method:'POST',mode:'no-cors',body:params});
+  await syncAll();
 }
 
 function clearContactForm(){
@@ -664,6 +680,7 @@ function editContact(row){
 }
 
 async function saveContact(){
+  const btn=event.target;btn.disabled=true;btn.textContent='Saving...';
   const vals=[
     document.getElementById('con-name').value,
     document.getElementById('con-company').value,
@@ -829,7 +846,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   const today=new Date().toISOString().split('T')[0];
   ['emp-checked','emp-outreach','out-date','out-followup','con-date'].forEach(id=>{const el=document.getElementById(id);if(el&&el.type==='date')el.value=today;});
   syncAll();
-  setInterval(syncAll,5*60*1000);
+  setInterval(syncAll,10*60*1000);
 });
 </script>
 </body>

@@ -13,9 +13,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-s
 .logo{font-size:15px;font-weight:700;color:var(--blue)}
 .logo span{color:var(--text2);font-weight:400}
 .sync-btn{font-size:12px;padding:5px 12px;border:1px solid var(--border);border-radius:6px;background:var(--white);cursor:pointer;color:var(--text2);display:flex;align-items:center;gap:5px}
-.sync-btn:hover{background:var(--gray-light);border-color:#d1d5db}
+.sync-btn:hover{background:var(--gray-light)}
 .sync-status{font-size:11px;color:var(--text2)}
-.nav{background:var(--white);border-bottom:1px solid var(--border);padding:0 24px;display:flex;gap:2px;position:sticky;top:52px;z-index:199}
+.nav{background:var(--white);border-bottom:1px solid var(--border);padding:0 24px;display:flex;gap:2px;position:sticky;top:52px;z-index:199;overflow-x:auto}
 .nav-btn{font-size:13px;padding:10px 14px;cursor:pointer;color:var(--text2);border-bottom:2px solid transparent;font-weight:400;white-space:nowrap;background:none;border-top:none;border-left:none;border-right:none}
 .nav-btn:hover{color:var(--text)}
 .nav-btn.active{color:var(--blue);border-bottom-color:var(--blue);font-weight:500}
@@ -23,6 +23,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-s
 .page.active{display:block}
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.grid-4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:16px}
 .card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:18px}
 .card-title{font-size:11px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px}
 .stat{font-size:28px;font-weight:700;color:var(--text)}
@@ -33,7 +34,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-s
 .badge-c{background:var(--purple-light);color:var(--purple)}
 .badge-pending{background:#fef3c7;color:#92400e}
 .badge-done{background:var(--green-light);color:var(--green)}
-.badge-sprint{background:var(--red-light);color:var(--red)}
+.badge-high{background:#fee2e2;color:#b91c1c}
+.badge-medium{background:#fef3c7;color:#92400e}
+.badge-active{background:#dcfce7;color:#15803d}
 .task-item{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid #f3f4f6;cursor:pointer}
 .task-item:last-child{border-bottom:none}
 .task-item:hover{background:#fafafa;margin:0 -18px;padding:10px 18px}
@@ -57,7 +60,8 @@ tr:hover td{background:#fafafa}
 .btn-primary{background:var(--blue);color:#fff;border-color:var(--blue)}
 .btn-primary:hover{background:#085ab0}
 .btn-sm{font-size:11px;padding:3px 9px}
-input[type=text],input[type=date],input[type=url],select,textarea{width:100%;padding:7px 10px;border:1px solid var(--border);border-radius:6px;font-size:13px;font-family:inherit;color:var(--text);background:var(--white)}
+.btn-danger{background:#fee2e2;color:#b91c1c;border-color:#fca5a5}
+input[type=text],input[type=date],input[type=url],input[type=email],select,textarea{width:100%;padding:7px 10px;border:1px solid var(--border);border-radius:6px;font-size:13px;font-family:inherit;color:var(--text);background:var(--white)}
 input:focus,select:focus,textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(10,102,194,.1)}
 .form-row{display:grid;gap:12px;margin-bottom:12px}
 .form-row-2{grid-template-columns:1fr 1fr}
@@ -65,18 +69,13 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--blue);bo
 label{font-size:12px;font-weight:500;color:var(--text2);display:block;margin-bottom:4px}
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:500;align-items:center;justify-content:center}
 .modal-overlay.open{display:flex}
-.modal{background:var(--white);border-radius:12px;padding:24px;width:90%;max-width:560px;max-height:90vh;overflow-y:auto}
+.modal{background:var(--white);border-radius:12px;padding:24px;width:90%;max-width:580px;max-height:90vh;overflow-y:auto}
 .modal-title{font-size:16px;font-weight:600;margin-bottom:20px}
 .modal-footer{display:flex;gap:8px;justify-content:flex-end;margin-top:20px}
-.alert{padding:10px 14px;border-radius:6px;font-size:13px;margin-bottom:12px}
-.alert-info{background:var(--blue-light);color:var(--blue-dark)}
-.alert-success{background:var(--green-light);color:var(--green)}
-.link{color:var(--blue);text-decoration:none}
-.link:hover{text-decoration:underline}
+.notice{padding:10px 14px;border-radius:6px;font-size:13px;margin-bottom:12px;background:#f0f9ff;border:1px solid #bae6fd;color:#0369a1}
 .spinner{display:inline-block;width:14px;height:14px;border:2px solid #e5e7eb;border-top-color:var(--blue);border-radius:50%;animation:spin .6s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 .empty{text-align:center;padding:40px;color:var(--text2)}
-.empty i{font-size:32px;margin-bottom:8px;display:block}
 .progress-bar{height:6px;background:#e5e7eb;border-radius:3px;overflow:hidden;margin-top:6px}
 .progress-fill{height:100%;background:var(--blue);border-radius:3px;transition:width .3s}
 .tag{display:inline-block;font-size:10px;padding:1px 6px;border-radius:8px;font-weight:600;margin-right:3px}
@@ -104,8 +103,13 @@ label{font-size:12px;font-weight:500;color:var(--text2);display:block;margin-bot
 .sprint-task:hover{background:#fafafa}
 .sprint-task-text{font-size:13px;flex:1}
 .sprint-task-text.done{color:#9ca3af;text-decoration:line-through}
-.notice{background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:10px 14px;font-size:12px;color:#0369a1;margin-bottom:16px}
-@media(max-width:680px){.grid-2,.grid-3{grid-template-columns:1fr}.form-row-2,.form-row-3{grid-template-columns:1fr}.page{padding:12px 14px}.topbar{padding:0 14px}.nav{padding:0 14px;overflow-x:auto}.nav-btn{padding:10px 10px;font-size:12px}}
+.contact-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:8px}
+.contact-name{font-size:15px;font-weight:600}
+.contact-meta{font-size:12px;color:var(--text2)}
+.contact-actions{display:flex;gap:6px;margin-top:4px}
+.filter-bar{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.filter-bar select{width:auto;padding:6px 10px;font-size:13px}
+@media(max-width:680px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr}.form-row-2,.form-row-3{grid-template-columns:1fr}.page{padding:12px 14px}.topbar{padding:0 14px}.nav{padding:0 14px}}
 </style>
 </head>
 <body>
@@ -120,6 +124,7 @@ label{font-size:12px;font-weight:500;color:var(--text2);display:block;margin-bot
 
 <div class="nav">
   <button class="nav-btn active" onclick="showPage('dashboard',this)">Dashboard</button>
+  <button class="nav-btn" onclick="showPage('contacts',this)">Contacts</button>
   <button class="nav-btn" onclick="showPage('employers',this)">Employers</button>
   <button class="nav-btn" onclick="showPage('outreach',this)">Outreach</button>
   <button class="nav-btn" onclick="showPage('sprints',this)">JIP Build</button>
@@ -128,22 +133,21 @@ label{font-size:12px;font-weight:500;color:var(--text2);display:block;margin-bot
 
 <!-- DASHBOARD -->
 <div class="page active" id="page-dashboard">
-  <div class="grid-3" style="margin-bottom:16px" id="dashStats">
-    <div class="card"><div class="card-title">Employers to check today</div><div class="stat" id="stat-employers">—</div><div class="stat-label">Tier A overdue</div></div>
-    <div class="card"><div class="card-title">Outreach due this week</div><div class="stat" id="stat-outreach">—</div><div class="stat-label">Follow-ups pending</div></div>
+  <div class="grid-4" style="margin-bottom:16px">
+    <div class="card"><div class="card-title">Employers overdue</div><div class="stat" id="stat-employers">—</div><div class="stat-label">Need checking</div></div>
+    <div class="card"><div class="card-title">Follow-ups due</div><div class="stat" id="stat-outreach">—</div><div class="stat-label">Outreach pending</div></div>
+    <div class="card"><div class="card-title">Contacts to reach</div><div class="stat" id="stat-contacts">—</div><div class="stat-label">Not yet contacted</div></div>
     <div class="card"><div class="card-title">Sprint progress</div><div class="stat" id="stat-sprint">—</div><div class="stat-label">Tasks complete</div></div>
   </div>
 
-  <div class="grid-2">
+  <div class="grid-2" style="margin-bottom:16px">
     <div class="card">
-      <div class="card-title">Weekly tasks</div>
-      <div id="weeklyTasks">
-        <div class="task-item" onclick="toggleWeekly(this,'hm5')"><div class="cb" id="cb-hm5"></div><div><div class="task-text">Send 5 hiring manager LinkedIn messages</div><div class="task-meta">Tier A employers · peer tone</div></div></div>
-        <div class="task-item" onclick="toggleWeekly(this,'ops5')"><div class="cb" id="cb-ops5"></div><div><div class="task-text">Connect with 5 operations directors</div><div class="task-meta">Target sectors · ECOBE framework</div></div></div>
-        <div class="task-item" onclick="toggleWeekly(this,'rec5')"><div class="cb" id="cb-rec5"></div><div><div class="task-text">Email 5 Tier C recruiters</div><div class="task-meta">Brief call request · peer tone</div></div></div>
-        <div class="task-item" onclick="toggleWeekly(this,'apps')"><div class="cb" id="cb-apps"></div><div><div class="task-text">3–5 tailored direct applications</div><div class="task-meta">No Easy Apply · direct portal only</div></div></div>
-        <div class="task-item" onclick="toggleWeekly(this,'empcheck')"><div class="cb" id="cb-empcheck"></div><div><div class="task-text">Check Tier A employer careers pages</div><div class="task-meta">22 employers · weekly cadence</div></div></div>
-      </div>
+      <div class="card-title">Weekly checklist</div>
+      <div class="task-item" onclick="toggleWeekly(this,'hm5')"><div class="cb" id="cb-hm5"></div><div><div class="task-text">5 hiring manager LinkedIn messages</div><div class="task-meta">Tier A employers · peer tone</div></div></div>
+      <div class="task-item" onclick="toggleWeekly(this,'ops5')"><div class="cb" id="cb-ops5"></div><div><div class="task-text">5 operations director connections</div><div class="task-meta">Target sectors · ECOBE framework</div></div></div>
+      <div class="task-item" onclick="toggleWeekly(this,'rec5')"><div class="cb" id="cb-rec5"></div><div><div class="task-text">5 Tier C recruiter emails</div><div class="task-meta">Brief call request · peer tone</div></div></div>
+      <div class="task-item" onclick="toggleWeekly(this,'apps')"><div class="cb" id="cb-apps"></div><div><div class="task-text">3–5 tailored direct applications</div><div class="task-meta">No Easy Apply · direct portal only</div></div></div>
+      <div class="task-item" onclick="toggleWeekly(this,'empcheck')"><div class="cb" id="cb-empcheck"></div><div><div class="task-text">Check Tier A employer careers pages</div><div class="task-meta">22 employers · weekly cadence</div></div></div>
       <div style="margin-top:12px">
         <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text2);margin-bottom:4px"><span>Weekly progress</span><span id="weeklyCount">0/5</span></div>
         <div class="progress-bar"><div class="progress-fill" id="weeklyBar" style="width:0%"></div></div>
@@ -152,14 +156,60 @@ label{font-size:12px;font-weight:500;color:var(--text2);display:block;margin-bot
     </div>
 
     <div class="card">
-      <div class="card-title">Outreach follow-ups due</div>
-      <div id="dashFollowups"><div class="empty">Loading...</div></div>
+      <div class="card-title">Priority contacts — not yet reached</div>
+      <div id="dashContacts"><div class="empty">Loading...</div></div>
     </div>
   </div>
 
-  <div style="margin-top:16px" class="card">
-    <div class="card-title">Employers overdue for check</div>
-    <div id="dashOverdue"><div class="empty">Loading...</div></div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Follow-ups due</div>
+      <div id="dashFollowups"><div class="empty">Loading...</div></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Employers overdue for check</div>
+      <div id="dashOverdue"><div class="empty">Loading...</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACTS -->
+<div class="page" id="page-contacts">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+    <div>
+      <div class="section-title" style="margin-bottom:4px">Contacts</div>
+      <div style="font-size:12px;color:var(--text2)">Recruiters · Hiring managers · Operations directors · Referrals</div>
+    </div>
+    <button class="btn btn-primary" onclick="openModal('contactModal');clearContactForm()">+ Add contact</button>
+  </div>
+  <div class="filter-bar">
+    <select id="contactTypeFilter" onchange="renderContacts()">
+      <option value="">All types</option>
+      <option value="Recruiter — Tier C">Recruiters</option>
+      <option value="Hiring manager">Hiring managers</option>
+      <option value="Operations director">Operations directors</option>
+      <option value="Referral contact">Referrals</option>
+    </select>
+    <select id="contactStatusFilter" onchange="renderContacts()">
+      <option value="">All statuses</option>
+      <option value="Not contacted">Not contacted</option>
+      <option value="Active">Active</option>
+      <option value="Responded">Responded</option>
+      <option value="Meeting booked">Meeting booked</option>
+    </select>
+    <select id="contactPriorityFilter" onchange="renderContacts()">
+      <option value="">All priorities</option>
+      <option value="High">High</option>
+      <option value="Medium">Medium</option>
+    </select>
+  </div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr>
+        <th>Name</th><th>Company</th><th>Title</th><th>Type</th><th>Priority</th><th>Status</th><th>Last Contact</th><th>Notes</th><th>Actions</th>
+      </tr></thead>
+      <tbody id="contactTable"><tr><td colspan="9" style="text-align:center;padding:30px;color:var(--text2)"><span class="spinner"></span> Loading...</td></tr></tbody>
+    </table>
   </div>
 </div>
 
@@ -170,14 +220,12 @@ label{font-size:12px;font-weight:500;color:var(--text2);display:block;margin-bot
       <div class="section-title" style="margin-bottom:4px">Employer tracker</div>
       <div style="font-size:12px;color:var(--text2)">Tier A weekly · Tier B monthly · Tier C relationship</div>
     </div>
-    <div style="display:flex;gap:8px">
-      <select id="tierFilter" onchange="renderEmployers()" style="width:auto;padding:6px 10px;font-size:13px">
-        <option value="">All tiers</option>
-        <option value="A">Tier A</option>
-        <option value="B">Tier B</option>
-        <option value="C">Tier C</option>
-      </select>
-    </div>
+    <select id="tierFilter" onchange="renderEmployers()" style="width:auto;padding:6px 10px;font-size:13px">
+      <option value="">All tiers</option>
+      <option value="A">Tier A</option>
+      <option value="B">Tier B</option>
+      <option value="C">Tier C</option>
+    </select>
   </div>
   <div class="tbl-wrap">
     <table>
@@ -192,7 +240,7 @@ label{font-size:12px;font-weight:500;color:var(--text2);display:block;margin-bot
 <!-- OUTREACH -->
 <div class="page" id="page-outreach">
   <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
-    <div class="section-title">Outreach tracker</div>
+    <div class="section-title">Outreach log</div>
     <button class="btn btn-primary" onclick="openModal('outreachModal')">+ Log outreach</button>
   </div>
   <div class="notice">Weekly target: 5 hiring managers · 5 operations directors · 5 Tier C recruiters. No Easy Apply ever.</div>
@@ -209,7 +257,7 @@ label{font-size:12px;font-weight:500;color:var(--text2);display:block;margin-bot
 <!-- SPRINTS -->
 <div class="page" id="page-sprints">
   <div class="section-title" style="margin-bottom:4px">JIP build — sprint roadmap</div>
-  <div style="font-size:12px;color:var(--text2);margin-bottom:16px">ADR-009: deterministic first, AI second. Click a sprint to expand.</div>
+  <div style="font-size:12px;color:var(--text2);margin-bottom:16px">ADR-009: deterministic first, AI second.</div>
   <div id="sprintList"><div class="empty"><span class="spinner"></span> Loading...</div></div>
 </div>
 
@@ -231,6 +279,69 @@ label{font-size:12px;font-weight:500;color:var(--text2);display:block;margin-bot
   </div>
 </div>
 
+<!-- CONTACT MODAL -->
+<div class="modal-overlay" id="contactModal">
+  <div class="modal">
+    <div class="modal-title" id="contactModalTitle">Add contact</div>
+    <input type="hidden" id="con-row">
+    <div class="form-row form-row-2">
+      <div><label>Name</label><input type="text" id="con-name" placeholder="Full name"></div>
+      <div><label>Company / Firm</label><input type="text" id="con-company" placeholder="Company or firm"></div>
+    </div>
+    <div class="form-row form-row-2">
+      <div><label>Title</label><input type="text" id="con-title" placeholder="e.g. COO, Partner, Director"></div>
+      <div><label>LinkedIn URL</label><input type="url" id="con-li" placeholder="https://linkedin.com/in/..."></div>
+    </div>
+    <div class="form-row form-row-2">
+      <div><label>Tier</label>
+        <select id="con-tier">
+          <option value="">—</option>
+          <option value="A">A</option>
+          <option value="B">B</option>
+          <option value="C">C</option>
+        </select>
+      </div>
+      <div><label>Type</label>
+        <select id="con-type">
+          <option>Recruiter — Tier C</option>
+          <option>Hiring manager</option>
+          <option>Operations director</option>
+          <option>Referral contact</option>
+          <option>Other</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row form-row-2">
+      <div><label>Priority</label>
+        <select id="con-priority">
+          <option>High</option>
+          <option>Medium</option>
+          <option>Low</option>
+        </select>
+      </div>
+      <div><label>Status</label>
+        <select id="con-status">
+          <option>Not contacted</option>
+          <option>Active</option>
+          <option>Responded</option>
+          <option>Meeting booked</option>
+          <option>Not relevant now</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div><label>Last contact date</label><input type="date" id="con-date"></div>
+    </div>
+    <div class="form-row">
+      <div><label>Notes</label><textarea id="con-notes" rows="3" placeholder="Context, topics discussed, next steps..."></textarea></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" onclick="closeModal('contactModal')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveContact()">Save</button>
+    </div>
+  </div>
+</div>
+
 <!-- EMPLOYER EDIT MODAL -->
 <div class="modal-overlay" id="employerModal">
   <div class="modal">
@@ -244,14 +355,15 @@ label{font-size:12px;font-weight:500;color:var(--text2);display:block;margin-bot
       <div><label>Open roles found</label><input type="text" id="emp-roles" placeholder="e.g. Director of Operations posted 27 Jun"></div>
     </div>
     <div class="form-row form-row-2">
-      <div><label>Hiring manager name</label><input type="text" id="emp-hm-name" placeholder="Full name"></div>
-      <div><label>HM LinkedIn URL</label><input type="url" id="emp-hm-li" placeholder="https://linkedin.com/in/..."></div>
+      <div><label>Hiring manager name</label><input type="text" id="emp-hm-name"></div>
+      <div><label>HM LinkedIn URL</label><input type="url" id="emp-hm-li"></div>
     </div>
-    <div class="form-row">
+    <div class="form-row form-row-2">
       <div><label>Last outreach date</label><input type="date" id="emp-outreach"></div>
+      <div></div>
     </div>
     <div class="form-row">
-      <div><label>Notes</label><textarea id="emp-notes" rows="3" placeholder="Any notes, context, next steps..."></textarea></div>
+      <div><label>Notes</label><textarea id="emp-notes" rows="3"></textarea></div>
     </div>
     <div class="modal-footer">
       <button class="btn" onclick="closeModal('employerModal')">Cancel</button>
@@ -277,11 +389,11 @@ label{font-size:12px;font-weight:500;color:var(--text2);display:block;margin-bot
       </div>
     </div>
     <div class="form-row form-row-2">
-      <div><label>Name</label><input type="text" id="out-name" placeholder="Contact name"></div>
-      <div><label>Company</label><input type="text" id="out-company" placeholder="Company or firm"></div>
+      <div><label>Name</label><input type="text" id="out-name"></div>
+      <div><label>Company</label><input type="text" id="out-company"></div>
     </div>
     <div class="form-row form-row-2">
-      <div><label>Role / context</label><input type="text" id="out-role" placeholder="e.g. COO, retained search"></div>
+      <div><label>Role / context</label><input type="text" id="out-role"></div>
       <div><label>Type</label>
         <select id="out-type">
           <option>Hiring manager</option>
@@ -293,7 +405,7 @@ label{font-size:12px;font-weight:500;color:var(--text2);display:block;margin-bot
       </div>
     </div>
     <div class="form-row form-row-2">
-      <div><label>Response received</label>
+      <div><label>Response</label>
         <select id="out-response">
           <option>No response yet</option>
           <option>Positive — follow up</option>
@@ -306,10 +418,10 @@ label{font-size:12px;font-weight:500;color:var(--text2);display:block;margin-bot
       <div><label>Follow-up due</label><input type="date" id="out-followup"></div>
     </div>
     <div class="form-row">
-      <div><label>Next action</label><input type="text" id="out-nextaction" placeholder="e.g. Send CV, Book call, Message 2"></div>
+      <div><label>Next action</label><input type="text" id="out-nextaction"></div>
     </div>
     <div class="form-row">
-      <div><label>Notes</label><textarea id="out-notes" rows="2" placeholder="Any context..."></textarea></div>
+      <div><label>Notes</label><textarea id="out-notes" rows="2"></textarea></div>
     </div>
     <div class="modal-footer">
       <button class="btn" onclick="closeModal('outreachModal')">Cancel</button>
@@ -343,12 +455,13 @@ label{font-size:12px;font-weight:500;color:var(--text2);display:block;margin-bot
 </div>
 
 <script>
-const SHEET_ID = '1ftXhJf8CCM7JinZi1Z_5e1q2HfeeWr2c2jZpVWyiXaU';
-const API_KEY = 'AIzaSyAAlBW4rb1OFGldAcZmdA5V2evKzrCXAZE';
-const BASE = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}`;
+const SHEET_ID='1ftXhJf8CCM7JinZi1Z_5e1q2HfeeWr2c2jZpVWyiXaU';
+const API_KEY='AIzaSyAAlBW4rb1OFGldAcZmdA5V2evKzrCXAZE';
+const BASE=`https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}`;
 
-let employers=[], outreach=[], sprints=[], metrics=[];
-let weeklyState = JSON.parse(localStorage.getItem('jip-weekly')||'{}');
+let employers=[],outreach=[],sprints=[],metrics=[],contacts=[];
+let weeklyState=JSON.parse(localStorage.getItem('jip-weekly')||'{}');
+let editingContact=false;
 
 function showPage(id,btn){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
@@ -356,108 +469,129 @@ function showPage(id,btn){
   document.getElementById('page-'+id).classList.add('active');
   btn.classList.add('active');
 }
-
 function openModal(id){document.getElementById(id).classList.add('open')}
 function closeModal(id){document.getElementById(id).classList.remove('open')}
 
 async function gGet(range){
-  const r = await fetch(`${BASE}/values/${encodeURIComponent(range)}?key=${API_KEY}`);
-  const d = await r.json();
+  const r=await fetch(`${BASE}/values/${encodeURIComponent(range)}?key=${API_KEY}`);
+  const d=await r.json();
   return d.values||[];
 }
-
-async function gAppend(sheet, values){
-  const r = await fetch(`${BASE}/values/${encodeURIComponent(sheet+'!A1')}:append?valueInputOption=USER_ENTERED&insertDataOption=INSERT_ROWS&key=${API_KEY}`,{
+async function gAppend(sheet,values){
+  return fetch(`${BASE}/values/${encodeURIComponent(sheet+'!A1')}:append?valueInputOption=USER_ENTERED&insertDataOption=INSERT_ROWS&key=${API_KEY}`,{
     method:'POST',headers:{'Content-Type':'application/json'},
     body:JSON.stringify({values:[values]})
   });
-  return r.json();
 }
-
-async function gUpdate(range, values){
-  const r = await fetch(`${BASE}/values/${encodeURIComponent(range)}?valueInputOption=USER_ENTERED&key=${API_KEY}`,{
+async function gUpdate(range,values){
+  return fetch(`${BASE}/values/${encodeURIComponent(range)}?valueInputOption=USER_ENTERED&key=${API_KEY}`,{
     method:'PUT',headers:{'Content-Type':'application/json'},
     body:JSON.stringify({values:[values]})
   });
-  return r.json();
 }
 
 async function syncAll(){
   document.getElementById('syncIcon').innerHTML='<span class="spinner"></span>';
   document.getElementById('syncStatus').textContent='Syncing...';
   try{
-    const [eRows,oRows,sRows,mRows] = await Promise.all([
+    const [eRows,oRows,sRows,mRows,cRows]=await Promise.all([
       gGet('Employers!A2:I'),
       gGet('Outreach!A2:J'),
       gGet('Sprints!A2:E'),
-      gGet('Metrics!A2:G')
+      gGet('Metrics!A2:G'),
+      gGet('Contacts!A2:I')
     ]);
-    employers = eRows.map((r,i)=>({row:i+2,company:r[0]||'',tier:r[1]||'',url:r[2]||'',checked:r[3]||'',roles:r[4]||'',hmName:r[5]||'',hmLi:r[6]||'',outreach:r[7]||'',notes:r[8]||''}));
-    outreach = oRows.map((r,i)=>({row:i+2,date:r[0]||'',name:r[1]||'',company:r[2]||'',role:r[3]||'',channel:r[4]||'',type:r[5]||'',response:r[6]||'',nextAction:r[7]||'',followup:r[8]||'',notes:r[9]||''}));
-    sprints = sRows.map((r,i)=>({row:i+2,sprint:r[0]||'',version:r[1]||'',task:r[2]||'',done:r[3]||'No',dod:r[4]||''}));
-    metrics = mRows.map((r,i)=>({row:i+2,month:r[0]||'',roles:r[1]||'',apps:r[2]||'',rec:r[3]||'',hm:r[4]||'',int1:r[5]||'',int2:r[6]||''}));
+    employers=eRows.map((r,i)=>({row:i+2,company:r[0]||'',tier:r[1]||'',url:r[2]||'',checked:r[3]||'',roles:r[4]||'',hmName:r[5]||'',hmLi:r[6]||'',outreach:r[7]||'',notes:r[8]||''}));
+    outreach=oRows.map((r,i)=>({row:i+2,date:r[0]||'',name:r[1]||'',company:r[2]||'',role:r[3]||'',channel:r[4]||'',type:r[5]||'',response:r[6]||'',nextAction:r[7]||'',followup:r[8]||'',notes:r[9]||''}));
+    sprints=sRows.map((r,i)=>({row:i+2,sprint:r[0]||'',version:r[1]||'',task:r[2]||'',done:r[3]||'No',dod:r[4]||''}));
+    metrics=mRows.map((r,i)=>({row:i+2,month:r[0]||'',roles:r[1]||'',apps:r[2]||'',rec:r[3]||'',hm:r[4]||'',int1:r[5]||'',int2:r[6]||''}));
+    contacts=cRows.map((r,i)=>({row:i+2,name:r[0]||'',company:r[1]||'',title:r[2]||'',li:r[3]||'',tier:r[4]||'',type:r[5]||'',priority:r[6]||'',status:r[7]||'',notes:r[8]||'',date:r[9]||''}));
     renderAll();
-    document.getElementById('syncStatus').textContent='Last synced: '+new Date().toLocaleTimeString();
+    document.getElementById('syncStatus').textContent='Synced '+new Date().toLocaleTimeString();
   }catch(e){
-    document.getElementById('syncStatus').textContent='Sync failed — check connection';
+    document.getElementById('syncStatus').textContent='Sync failed';
+    console.error(e);
   }
   document.getElementById('syncIcon').textContent='↻';
 }
 
 function renderAll(){
+  renderDashboard();
+  renderContacts();
   renderEmployers();
   renderOutreach();
   renderSprints();
   renderMetrics();
-  renderDashboard();
 }
 
 function renderDashboard(){
-  const today = new Date();
-  const sevenDaysAgo = new Date(today-7*86400000);
-  const thirtyDaysAgo = new Date(today-30*86400000);
+  const today=new Date();
+  const ago7=new Date(today-7*864e5);
+  const ago30=new Date(today-30*864e5);
 
-  // Count overdue employers
-  const overdueA = employers.filter(e=>e.tier==='A'&&(!e.checked||new Date(e.checked)<sevenDaysAgo));
-  const overdueB = employers.filter(e=>e.tier==='B'&&(!e.checked||new Date(e.checked)<thirtyDaysAgo));
-  document.getElementById('stat-employers').textContent = overdueA.length + overdueB.length;
+  const overdueA=employers.filter(e=>e.tier==='A'&&(!e.checked||new Date(e.checked)<ago7));
+  const overdueB=employers.filter(e=>e.tier==='B'&&(!e.checked||new Date(e.checked)<ago30));
+  document.getElementById('stat-employers').textContent=overdueA.length+overdueB.length;
 
-  // Count follow-ups due
-  const followupsDue = outreach.filter(o=>o.followup&&new Date(o.followup)<=today&&o.response==='No response yet');
-  document.getElementById('stat-outreach').textContent = followupsDue.length;
+  const fueDue=outreach.filter(o=>o.followup&&new Date(o.followup)<=today&&o.response==='No response yet');
+  document.getElementById('stat-outreach').textContent=fueDue.length;
 
-  // Sprint progress
-  const done = sprints.filter(s=>s.done==='Yes').length;
-  document.getElementById('stat-sprint').textContent = done+'/'+sprints.length;
+  const notContacted=contacts.filter(c=>c.status==='Not contacted'&&c.priority==='High');
+  document.getElementById('stat-contacts').textContent=notContacted.length;
 
-  // Overdue employers list
-  const allOverdue = [...overdueA,...overdueB].slice(0,8);
-  const overdueEl = document.getElementById('dashOverdue');
-  if(allOverdue.length===0){overdueEl.innerHTML='<div class="empty">All employers checked on schedule ✓</div>';return;}
-  overdueEl.innerHTML=`<table><thead><tr><th>Company</th><th>Tier</th><th>Last Checked</th><th>Careers Page</th></tr></thead><tbody>${allOverdue.map(e=>`<tr><td><strong>${e.company}</strong></td><td><span class="badge badge-${e.tier.toLowerCase()}">${e.tier}</span></td><td style="color:var(--red)">${e.checked||'Never'}</td><td>${e.url?`<a href="${e.url}" target="_blank" class="link">Open ↗</a>`:'—'}</td></tr>`).join('')}</tbody></table>`;
+  const doneSprints=sprints.filter(s=>s.done==='Yes').length;
+  document.getElementById('stat-sprint').textContent=doneSprints+'/'+sprints.length;
+
+  // Priority contacts not yet reached
+  const dashCon=document.getElementById('dashContacts');
+  const toReach=contacts.filter(c=>c.status==='Not contacted').slice(0,5);
+  if(toReach.length===0){dashCon.innerHTML='<div class="empty">All contacts reached ✓</div>';}
+  else{dashCon.innerHTML=toReach.map(c=>`
+    <div class="task-item">
+      <div style="flex:1">
+        <div class="task-text"><strong>${c.name}</strong> — ${c.company}</div>
+        <div class="task-meta">${c.type}${c.title?' · '+c.title:''}</div>
+      </div>
+      <span class="badge badge-${c.priority==='High'?'high':'medium'}">${c.priority}</span>
+      ${c.li?`<a href="${c.li}" target="_blank" class="btn btn-sm" style="margin-left:4px">LinkedIn ↗</a>`:''}
+    </div>`).join('');}
 
   // Follow-ups
-  const fuEl = document.getElementById('dashFollowups');
-  if(followupsDue.length===0){fuEl.innerHTML='<div class="empty">No follow-ups due ✓</div>';return;}
-  fuEl.innerHTML=followupsDue.slice(0,5).map(o=>`<div class="task-item"><div><div class="task-text">${o.name} — ${o.company}</div><div class="task-meta">${o.type} · Due ${o.followup} · ${o.nextAction}</div></div></div>`).join('');
+  const fuEl=document.getElementById('dashFollowups');
+  if(fueDue.length===0){fuEl.innerHTML='<div class="empty">No follow-ups due ✓</div>';}
+  else{fuEl.innerHTML=fueDue.slice(0,5).map(o=>`
+    <div class="task-item">
+      <div>
+        <div class="task-text"><strong>${o.name}</strong> — ${o.company}</div>
+        <div class="task-meta">${o.type} · Due ${o.followup} · ${o.nextAction||'Follow up'}</div>
+      </div>
+    </div>`).join('');}
 
-  // Weekly progress
+  // Overdue employers
+  const allOverdue=[...overdueA,...overdueB].slice(0,5);
+  const ovEl=document.getElementById('dashOverdue');
+  if(allOverdue.length===0){ovEl.innerHTML='<div class="empty">All employers checked ✓</div>';}
+  else{ovEl.innerHTML=allOverdue.map(e=>`
+    <div class="task-item">
+      <div style="flex:1">
+        <div class="task-text"><strong>${e.company}</strong> <span class="badge badge-${e.tier==='A'?'a':'b'}">${e.tier}</span></div>
+        <div class="task-meta">Last checked: ${e.checked||'Never'}</div>
+      </div>
+      ${e.url?`<a href="${e.url}" target="_blank" class="btn btn-sm">Open ↗</a>`:''}`).join('')+'</div>';}
+
+  // Weekly
   const keys=['hm5','ops5','rec5','apps','empcheck'];
-  const done2 = keys.filter(k=>weeklyState[k]).length;
+  const done2=keys.filter(k=>weeklyState[k]).length;
   document.getElementById('weeklyCount').textContent=done2+'/5';
   document.getElementById('weeklyBar').style.width=(done2/5*100)+'%';
-  keys.forEach(k=>{
-    const cb=document.getElementById('cb-'+k);
-    if(cb){cb.classList.toggle('checked',!!weeklyState[k])}
-  });
+  keys.forEach(k=>{const cb=document.getElementById('cb-'+k);if(cb)cb.classList.toggle('checked',!!weeklyState[k]);});
 }
 
 function toggleWeekly(el,key){
   weeklyState[key]=!weeklyState[key];
   localStorage.setItem('jip-weekly',JSON.stringify(weeklyState));
   el.querySelector('.cb').classList.toggle('checked',weeklyState[key]);
-  const txt=el.querySelector('.task-text');
-  txt.classList.toggle('done',weeklyState[key]);
+  el.querySelector('.task-text').classList.toggle('done',weeklyState[key]);
   const keys=['hm5','ops5','rec5','apps','empcheck'];
   const done=keys.filter(k=>weeklyState[k]).length;
   document.getElementById('weeklyCount').textContent=done+'/5';
@@ -466,31 +600,109 @@ function toggleWeekly(el,key){
 
 function resetWeekly(){
   if(!confirm('Reset all weekly tasks for new week?'))return;
-  weeklyState={};
-  localStorage.setItem('jip-weekly','{}');
-  renderDashboard();
+  weeklyState={};localStorage.setItem('jip-weekly','{}');renderDashboard();
+}
+
+function renderContacts(){
+  const typeF=document.getElementById('contactTypeFilter').value;
+  const statusF=document.getElementById('contactStatusFilter').value;
+  const prioF=document.getElementById('contactPriorityFilter').value;
+  let filtered=contacts;
+  if(typeF)filtered=filtered.filter(c=>c.type===typeF);
+  if(statusF)filtered=filtered.filter(c=>c.status===statusF);
+  if(prioF)filtered=filtered.filter(c=>c.priority===prioF);
+  const tbody=document.getElementById('contactTable');
+  if(filtered.length===0){tbody.innerHTML='<tr><td colspan="9" class="empty">No contacts. Add your first contact.</td></tr>';return;}
+  tbody.innerHTML=filtered.map(c=>{
+    const statusBadge=c.status==='Not contacted'?'badge-pending':c.status==='Active'?'badge-active':c.status==='Meeting booked'?'badge-done':'';
+    const prioBadge=c.priority==='High'?'badge-high':'badge-medium';
+    return`<tr>
+      <td><strong>${c.name}</strong>${c.li?` <a href="${c.li}" target="_blank" class="btn btn-sm" style="margin-left:4px">↗</a>`:''}</td>
+      <td>${c.company}</td>
+      <td style="color:var(--text2)">${c.title||'—'}</td>
+      <td><span style="font-size:11px;background:#f0f9ff;color:#0369a1;padding:2px 7px;border-radius:8px;font-weight:600">${c.type}</span></td>
+      <td><span class="badge ${prioBadge}">${c.priority}</span></td>
+      <td><span class="badge ${statusBadge}">${c.status}</span></td>
+      <td style="color:var(--text2)">${c.date||'—'}</td>
+      <td style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text2)">${c.notes||'—'}</td>
+      <td><button class="btn btn-sm" onclick="editContact(${c.row})">Edit</button></td>
+    </tr>`;
+  }).join('');
+}
+
+function clearContactForm(){
+  editingContact=false;
+  document.getElementById('contactModalTitle').textContent='Add contact';
+  document.getElementById('con-row').value='';
+  ['con-name','con-company','con-title','con-li','con-notes','con-date'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('con-tier').value='';
+  document.getElementById('con-type').value='Recruiter — Tier C';
+  document.getElementById('con-priority').value='High';
+  document.getElementById('con-status').value='Not contacted';
+}
+
+function editContact(row){
+  const c=contacts.find(x=>x.row===row);
+  if(!c)return;
+  editingContact=true;
+  document.getElementById('contactModalTitle').textContent='Edit contact';
+  document.getElementById('con-row').value=row;
+  document.getElementById('con-name').value=c.name;
+  document.getElementById('con-company').value=c.company;
+  document.getElementById('con-title').value=c.title;
+  document.getElementById('con-li').value=c.li;
+  document.getElementById('con-tier').value=c.tier;
+  document.getElementById('con-type').value=c.type;
+  document.getElementById('con-priority').value=c.priority;
+  document.getElementById('con-status').value=c.status;
+  document.getElementById('con-date').value=c.date||'';
+  document.getElementById('con-notes').value=c.notes;
+  openModal('contactModal');
+}
+
+async function saveContact(){
+  const vals=[
+    document.getElementById('con-name').value,
+    document.getElementById('con-company').value,
+    document.getElementById('con-title').value,
+    document.getElementById('con-li').value,
+    document.getElementById('con-tier').value,
+    document.getElementById('con-type').value,
+    document.getElementById('con-priority').value,
+    document.getElementById('con-status').value,
+    document.getElementById('con-notes').value,
+    document.getElementById('con-date').value
+  ];
+  const row=document.getElementById('con-row').value;
+  if(editingContact&&row){
+    await gUpdate(`Contacts!A${row}:J${row}`,[vals]);
+  } else {
+    await gAppend('Contacts',vals);
+  }
+  closeModal('contactModal');
+  await syncAll();
 }
 
 function renderEmployers(){
   const filter=document.getElementById('tierFilter').value;
   const filtered=filter?employers.filter(e=>e.tier===filter):employers;
   const tbody=document.getElementById('employerTable');
-  if(filtered.length===0){tbody.innerHTML='<tr><td colspan="8" class="empty">No employers loaded. Click Sync.</td></tr>';return;}
+  if(filtered.length===0){tbody.innerHTML='<tr><td colspan="8" class="empty">No data. Click Sync.</td></tr>';return;}
   const today=new Date();
   tbody.innerHTML=filtered.map(e=>{
-    const overdueClass=(!e.checked||(e.tier==='A'&&new Date(e.checked)<new Date(today-7*86400000))||(e.tier==='B'&&new Date(e.checked)<new Date(today-30*86400000)))?'color:var(--red)':'';
-    const tierTag=`<span class="badge badge-${e.tier==='A'?'a':e.tier==='B'?'b':'c'}">${e.tier}</span>`;
+    const overdue=!e.checked||(e.tier==='A'&&new Date(e.checked)<new Date(today-7*864e5))||(e.tier==='B'&&new Date(e.checked)<new Date(today-30*864e5));
+    const tierMap={A:'a',B:'b',C:'c'};
     const freq=e.tier==='A'?'<span class="tag tag-weekly">weekly</span>':e.tier==='B'?'<span class="tag tag-monthly">monthly</span>':'<span class="tag tag-relation">relationship</span>';
-    const hmLink=e.hmLi?`<a href="${e.hmLi}" target="_blank" class="link">${e.hmName||'View'}</a>`:e.hmName||'—';
+    const hmLink=e.hmLi?`<a href="${e.hmLi}" target="_blank" class="btn btn-sm">${e.hmName||'View'} ↗</a>`:e.hmName||'—';
     return`<tr>
-      <td><strong>${e.company}</strong>${e.url?' <a href="'+e.url+'" target="_blank" class="link" style="font-size:11px">↗</a>':''}</td>
-      <td>${tierTag} ${freq}</td>
-      <td style="${overdueClass}">${e.checked||'<em style="color:var(--red)">Never</em>'}</td>
+      <td><strong>${e.company}</strong> ${e.url?`<a href="${e.url}" target="_blank" class="btn btn-sm">Careers ↗</a>`:''}</td>
+      <td><span class="badge badge-${tierMap[e.tier]||'b'}">${e.tier}</span> ${freq}</td>
+      <td style="${overdue?'color:var(--red);font-weight:600':''}">${e.checked||'<em style="color:var(--red)">Never</em>'}</td>
       <td>${e.roles||'—'}</td>
       <td>${hmLink}</td>
       <td>${e.outreach||'—'}</td>
-      <td style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${e.notes||'—'}</td>
-      <td><button class="btn btn-sm" onclick='editEmployer(${e.row})'>Edit</button></td>
+      <td style="max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${e.notes||'—'}</td>
+      <td><button class="btn btn-sm" onclick="editEmployer(${e.row})">Edit</button></td>
     </tr>`;
   }).join('');
 }
@@ -511,55 +723,41 @@ function editEmployer(row){
 
 async function saveEmployer(){
   const row=document.getElementById('emp-row').value;
-  const vals=[
-    employers.find(e=>e.row==row)?.company||'',
-    employers.find(e=>e.row==row)?.tier||'',
-    employers.find(e=>e.row==row)?.url||'',
+  const e=employers.find(x=>x.row==row);
+  const vals=[e?.company||'',e?.tier||'',e?.url||'',
     document.getElementById('emp-checked').value,
     document.getElementById('emp-roles').value,
     document.getElementById('emp-hm-name').value,
     document.getElementById('emp-hm-li').value,
     document.getElementById('emp-outreach').value,
-    document.getElementById('emp-notes').value
-  ];
-  await gUpdate(`Employers!A${row}:I${row}`,vals);
+    document.getElementById('emp-notes').value];
+  await gUpdate(`Employers!A${row}:I${row}`,[vals]);
   closeModal('employerModal');
   await syncAll();
 }
 
 function renderOutreach(){
   const tbody=document.getElementById('outreachTable');
-  if(outreach.length===0){tbody.innerHTML='<tr><td colspan="8" style="text-align:center;padding:30px;color:var(--text2)">No outreach logged yet. Click + Log outreach.</td></tr>';return;}
+  if(outreach.length===0){tbody.innerHTML='<tr><td colspan="8" style="text-align:center;padding:30px;color:var(--text2)">No outreach logged yet.</td></tr>';return;}
   const today=new Date();
   tbody.innerHTML=[...outreach].reverse().map(o=>{
-    const fuStyle=o.followup&&new Date(o.followup)<=today&&o.response==='No response yet'?'color:var(--red);font-weight:600':'';
-    const respBadge=o.response==='No response yet'?'<span class="badge badge-pending">Pending</span>':o.response==='Meeting booked'?'<span class="badge badge-done">Meeting</span>':`<span class="badge" style="background:#f3f4f6;color:#374151">${o.response}</span>`;
+    const due=o.followup&&new Date(o.followup)<=today&&o.response==='No response yet';
+    const respBadge=o.response==='No response yet'?'<span class="badge badge-pending">Pending</span>':o.response==='Meeting booked'?'<span class="badge badge-done">Meeting ✓</span>':`<span style="font-size:11px;background:#f3f4f6;color:#374151;padding:2px 7px;border-radius:8px;font-weight:600">${o.response}</span>`;
     return`<tr>
       <td>${o.date}</td>
       <td><strong>${o.name}</strong></td>
       <td>${o.company}</td>
       <td>${o.channel}</td>
-      <td><span class="badge" style="background:#f0f9ff;color:#0369a1">${o.type}</span></td>
+      <td><span style="font-size:11px;background:#f0f9ff;color:#0369a1;padding:2px 7px;border-radius:8px;font-weight:600">${o.type}</span></td>
       <td>${respBadge}</td>
-      <td style="${fuStyle}">${o.followup||'—'}</td>
+      <td style="${due?'color:var(--red);font-weight:600':''}">${o.followup||'—'}</td>
       <td>${o.nextAction||'—'}</td>
     </tr>`;
   }).join('');
 }
 
 async function saveOutreach(){
-  const vals=[
-    document.getElementById('out-date').value,
-    document.getElementById('out-name').value,
-    document.getElementById('out-company').value,
-    document.getElementById('out-role').value,
-    document.getElementById('out-channel').value,
-    document.getElementById('out-type').value,
-    document.getElementById('out-response').value,
-    document.getElementById('out-nextaction').value,
-    document.getElementById('out-followup').value,
-    document.getElementById('out-notes').value
-  ];
+  const vals=[document.getElementById('out-date').value,document.getElementById('out-name').value,document.getElementById('out-company').value,document.getElementById('out-role').value,document.getElementById('out-channel').value,document.getElementById('out-type').value,document.getElementById('out-response').value,document.getElementById('out-nextaction').value,document.getElementById('out-followup').value,document.getElementById('out-notes').value];
   await gAppend('Outreach',vals);
   closeModal('outreachModal');
   await syncAll();
@@ -569,14 +767,14 @@ function renderSprints(){
   const grouped={};
   sprints.forEach(s=>{if(!grouped[s.sprint])grouped[s.sprint]={version:s.version,tasks:[]};grouped[s.sprint].tasks.push(s);});
   const colors={'Foundation':'background:#fee2e2;color:#b91c1c','Discovery':'background:#dbeafe;color:#1d4ed8','Fast Filter':'background:#fef3c7;color:#b45309','CRM':'background:#dcfce7;color:#15803d','Deep Analysis':'background:#ede9fe;color:#5b21b6','Intelligence':'background:#f3f4f6;color:#374151'};
-  const el=document.getElementById('sprintList');
-  el.innerHTML=Object.entries(grouped).map(([name,data])=>{
+  document.getElementById('sprintList').innerHTML=Object.entries(grouped).map(([name,data])=>{
     const done=data.tasks.filter(t=>t.done==='Yes').length;
     const total=data.tasks.length;
     const pct=total?Math.round(done/total*100):0;
     const col=colors[name]||'background:#f3f4f6;color:#374151';
-    return`<div class="sprint-block" id="sprint-${name.replace(/\s/g,'-')}">
-      <div class="sprint-hdr" onclick="toggleSprint('sprint-${name.replace(/\s/g,'-')}')">
+    const sid='sprint-'+name.replace(/\s/g,'-');
+    return`<div class="sprint-block" id="${sid}">
+      <div class="sprint-hdr" onclick="document.getElementById('${sid}').classList.toggle('sprint-open')">
         <span class="sprint-ver" style="${col}">${data.version}</span>
         <span class="sprint-title">${name}</span>
         <span class="sprint-prog">${done}/${total} · ${pct}%</span>
@@ -584,82 +782,49 @@ function renderSprints(){
       </div>
       <div class="sprint-body">
         <div style="padding:8px 14px"><div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div></div>
-        ${data.tasks.map(t=>`
-          <div class="sprint-task" onclick="toggleSprintTask(${t.row},this)">
-            <div class="cb${t.done==='Yes'?' checked':''}"></div>
-            <span class="sprint-task-text${t.done==='Yes'?' done':''}">${t.task}</span>
-            ${t.dod?`<span style="font-size:11px;color:var(--text2);max-width:200px;text-align:right">${t.dod}</span>`:''}
-          </div>`).join('')}
+        ${data.tasks.map(t=>`<div class="sprint-task" onclick="toggleSprintTask(${t.row},this)">
+          <div class="cb${t.done==='Yes'?' checked':''}"></div>
+          <span class="sprint-task-text${t.done==='Yes'?' done':''}">${t.task}</span>
+          ${t.dod?`<span style="font-size:11px;color:var(--text2);max-width:180px;text-align:right;flex-shrink:0">${t.dod}</span>`:''}
+        </div>`).join('')}
       </div>
     </div>`;
   }).join('');
 }
 
-function toggleSprint(id){
-  document.getElementById(id).classList.toggle('sprint-open');
-}
-
 async function toggleSprintTask(row,el){
   const s=sprints.find(x=>x.row===row);
   if(!s)return;
-  const newVal=s.done==='Yes'?'No':'Yes';
-  await gUpdate(`Sprints!D${row}`,[[newVal]]);
+  const nv=s.done==='Yes'?'No':'Yes';
+  await gUpdate(`Sprints!D${row}:D${row}`,[[[nv]]]);
   await syncAll();
 }
 
 function renderMetrics(){
   const tbody=document.getElementById('metricsTable');
-  if(metrics.length===0){tbody.innerHTML='<tr><td colspan="7" style="text-align:center;padding:30px;color:var(--text2)">No metrics logged yet.</td></tr>';return;}
+  if(metrics.length===0){tbody.innerHTML='<tr><td colspan="7" style="text-align:center;padding:30px;color:var(--text2)">No metrics yet.</td></tr>';return;}
   const targets={roles:[15,25],apps:[12,20],rec:[6,10],hm:[6,10],int1:[2,4],int2:[1,99]};
   tbody.innerHTML=[...metrics].reverse().map(m=>{
-    function cell(val,key){const t=targets[key];const v=parseInt(val)||0;const ok=v>=t[0];return`<td style="${val?ok?'color:var(--green)':'color:var(--red)':''}">${val||'—'}</td>`;}
+    function cell(val,key){const t=targets[key];const v=parseInt(val)||0;const ok=v>=t[0];return`<td style="${val?ok?'color:var(--green);font-weight:600':'color:var(--red);font-weight:600':''}">${val||'—'}</td>`;}
     return`<tr><td><strong>${m.month}</strong></td>${cell(m.roles,'roles')}${cell(m.apps,'apps')}${cell(m.rec,'rec')}${cell(m.hm,'hm')}${cell(m.int1,'int1')}${cell(m.int2,'int2')}</tr>`;
   }).join('');
-
-  // Funnel
   if(metrics.length>0){
-    const latest=metrics[metrics.length-1];
-    const rows=[
-      {label:'Roles discovered',val:latest.roles,target:'15–25'},
-      {label:'Applications',val:latest.apps,target:'12–20'},
-      {label:'Recruiter conversations',val:latest.rec,target:'6–10'},
-      {label:'HM conversations',val:latest.hm,target:'6–10'},
-      {label:'First interviews',val:latest.int1,target:'2–4'},
-      {label:'Final interviews',val:latest.int2,target:'1+'},
-    ];
-    document.getElementById('funnelDisplay').innerHTML=rows.map(r=>`
-      <div class="funnel-row">
-        <span class="funnel-label">${r.label}</span>
-        <div class="funnel-vals">
-          <span class="funnel-actual">${r.val||'—'}</span>
-          <span class="funnel-target">target ${r.target}</span>
-        </div>
-      </div>`).join('');
+    const l=metrics[metrics.length-1];
+    const rows=[{label:'Roles discovered',val:l.roles,t:'15–25'},{label:'Applications',val:l.apps,t:'12–20'},{label:'Recruiter conversations',val:l.rec,t:'6–10'},{label:'HM conversations',val:l.hm,t:'6–10'},{label:'First interviews',val:l.int1,t:'2–4'},{label:'Final interviews',val:l.int2,t:'1+'}];
+    document.getElementById('funnelDisplay').innerHTML=rows.map(r=>`<div class="funnel-row"><span class="funnel-label">${r.label}</span><div class="funnel-vals"><span class="funnel-actual">${r.val||'—'}</span><span class="funnel-target">target ${r.t}</span></div></div>`).join('');
   }
 }
 
 async function saveMetrics(){
-  const vals=[
-    document.getElementById('met-month').value,
-    document.getElementById('met-roles').value,
-    document.getElementById('met-apps').value,
-    document.getElementById('met-rec').value,
-    document.getElementById('met-hm').value,
-    document.getElementById('met-int1').value,
-    document.getElementById('met-int2').value
-  ];
+  const vals=[document.getElementById('met-month').value,document.getElementById('met-roles').value,document.getElementById('met-apps').value,document.getElementById('met-rec').value,document.getElementById('met-hm').value,document.getElementById('met-int1').value,document.getElementById('met-int2').value];
   await gAppend('Metrics',vals);
   closeModal('metricsModal');
   await syncAll();
 }
 
-// Set today's date as default in date fields
 document.addEventListener('DOMContentLoaded',()=>{
   const today=new Date().toISOString().split('T')[0];
-  ['emp-checked','emp-outreach','out-date','out-followup'].forEach(id=>{
-    const el=document.getElementById(id);
-    if(el&&el.type==='date')el.value=today;
-  });
+  ['emp-checked','emp-outreach','out-date','out-followup','con-date'].forEach(id=>{const el=document.getElementById(id);if(el&&el.type==='date')el.value=today;});
   syncAll();
   setInterval(syncAll,5*60*1000);
 });

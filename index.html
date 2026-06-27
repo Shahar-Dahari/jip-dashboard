@@ -479,16 +479,18 @@ async function gGet(range){
   return d.values||[];
 }
 async function gAppend(sheet,values){
-  return fetch(WRITER,{method:'POST',headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({action:'append',sheet,values})});
+  const params=new URLSearchParams();
+  params.append('payload',JSON.stringify({action:'append',sheet,values}));
+  return fetch(WRITER,{method:'POST',mode:'no-cors',body:params});
 }
 async function gUpdate(range,values){
   const match=range.match(/([A-Za-z ]+)!A(\d+)/);
   const sheet=match?match[1]:'';
   const row=match?parseInt(match[2]):0;
   const vals=Array.isArray(values[0])?values[0]:values;
-  return fetch(WRITER,{method:'POST',headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({action:'update',sheet,row,values:vals})});
+  const params=new URLSearchParams();
+  params.append('payload',JSON.stringify({action:'update',sheet,row,values:vals}));
+  return fetch(WRITER,{method:'POST',mode:'no-cors',body:params});
 }
 
 async function syncAll(){
